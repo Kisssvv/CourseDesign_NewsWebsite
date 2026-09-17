@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="#F5F5F5"
+    android:fitsSystemWindows="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="后台管理系统"
+        android:textSize="24sp"
+        android:textColor="#1A73E8"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp" />
+
+    <Button
+        android:id="@+id/btn_news_manage"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="新闻管理"
+        android:textSize="16sp"
+        android:textColor="#FFF"
+        android:backgroundTint="#1A73E8"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btn_category_manage"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="栏目管理"
+        android:textSize="16sp"
+        android:textColor="#FFF"
+        android:backgroundTint="#43A047"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btn_announcement_manage"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="公告管理"
+        android:textSize="16sp"
+        android:textColor="#FFF"
+        android:backgroundTint="#FB8C00"
+        android:layout_marginBottom="40dp" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="退出登录"
+        android:textSize="14sp"
+        style="@style/Widget.Material3.Button.OutlinedButton" />
+
+</LinearLayout>

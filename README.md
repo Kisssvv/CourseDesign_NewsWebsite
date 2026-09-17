@@ -95,15 +95,46 @@ app/src/main/java/cn/itcast/coursedesign_newswebsite/
 
 `lv_related`（相关新闻列表）存在完全相同的问题。
 
-**修复方案**
+**修复方案（已实施）**
 
-1. 在 Adapter 设置完成后手动遍历测量每个 item 的高度并累加，再重设 `ListView` 的 LayoutParams（通用做法，不改变现有布局结构）
+采用方案一：在 `NewsDetailActivity` 中新增 `fitListViewHeight(ListView)` 方法，每次 `setAdapter()` 之后调用。核心逻辑：
+
+```java
+// 宽度必须给准，否则文本换行行数不对，算出的高度也会偏
+int width = listView.getWidth();
+if (width <= 0) {
+    float density = getResources().getDisplayMetrics().density;
+    width = getResources().getDisplayMetrics().widthPixels - (int) (32 * density + 0.5f);
+}
+int widthSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.AT_MOST);
+int heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+
+int totalHeight = 0;
+for (int i = 0; i < itemCount; i++) {
+    View item = adapter.getView(i, null, listView);
+    item.measure(widthSpec, heightSpec);
+    totalHeight += item.getMeasuredHeight();
+}
+totalHeight += listView.getDividerHeight() * (itemCount - 1);  // 分隔线也要算进去
+
+ViewGroup.LayoutParams params = listView.getLayoutParams();
+params.height = totalHeight;
+listView.setLayoutParams(params);
+```
+
+同样的处理也应用到了 `lvRelated`。
+
+**修复结果**
+
+- `lv_comments` 完整渲染全部评论，条目数与「评论 (N)」的计数一致
+- `lv_related` 同步修复，相关新闻不再只显示一条
+- 评论区无数据时高度归零，不再留下空白占位
+- 改动只涉及 `NewsDetailActivity.java`，未修改布局结构；`./gradlew compileDebugJavaWithJavac` 编译通过
+
+**其他可选方案**
+
 2. 改用 `RecyclerView`，并设置 `nestedScrollingEnabled=false`
 3. 外层容器换成 `LinearLayout`，动态添加子 View
-
-**当前状态**
-
-根因已完成定位，上述方案待实施。
 
 ## 说明
 

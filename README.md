@@ -7,6 +7,28 @@
 
 一个完整的新闻资讯应用，包含普通用户与管理员两种角色。用户端可以按栏目浏览新闻、关键词搜索、查看正文与相关推荐、发表评论；管理端可以维护新闻、栏目和公告。全部数据通过 SQLite 落在本地，首次启动自动建表并填充示例数据，装上就能跑。
 
+## 界面预览
+
+### 用户端
+
+<p align="left">
+  <img src="docs/screenshots/01-login.png" width="250" />
+  <img src="docs/screenshots/02-user-home.png" width="250" />
+  <img src="docs/screenshots/03-user-news-detail.png" width="250" />
+</p>
+
+左起：登录页 · 新闻首页（搜索 + 栏目切换）· 新闻详情（相关新闻 + 评论区）
+
+### 管理端
+
+<p align="left">
+  <img src="docs/screenshots/04-admin-home.png" width="250" />
+  <img src="docs/screenshots/05-admin-news-list.png" width="250" />
+  <img src="docs/screenshots/06-admin-news-edit.png" width="250" />
+</p>
+
+左起：管理后台首页 · 新闻管理 · 新闻编辑
+
 ## 功能特性
 
 ### 用户端
